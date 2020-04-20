@@ -9,6 +9,10 @@ Para aplicar o padrão command, podemos utilizar uma classe abstrata para 'forç
 
 Quando temos uma fila de dados para processar e precisamos ter uma 'conexão forte' com alguma operação que será utilizada sobre ele, utilizamos o padrão de projeto command.
 
+## Desvantagens
+
+> O código pode ficar mais complicado uma vez que você está introduzindo uma nova camada entre remetentes e destinatários.
+
 ## Diferença do Command para o Strategy
 
 > A ideia do Command é abstrair um comando que deve ser executado, pois não é possível executá-lo naquele momento (pois precisamos por em uma fila ou coisa do tipo). Já no Strategy, a ideia é que você tenha uma estratégia (um algoritmo) para resolver um problema.

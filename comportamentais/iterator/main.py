@@ -12,10 +12,10 @@ class StationList:
         self.__stations = list()
         self.__counter = 0
 
-    def add_station(self, radio_station):
+    def add(self, radio_station):
         self.__stations.append(radio_station)
 
-    def remove_station(self, frequency):
+    def remove(self, frequency):
         for index in range(0, len(self.__stations)):
             if self.__stations[index].frequency == frequency:
                 self.__stations.pop(index)
@@ -40,15 +40,15 @@ class StationList:
 
 
 if __name__ == "__main__":
-    station_list = StationList()
 
-    station_list.add_station(RadioStation(89))
-    station_list.add_station(RadioStation(101))
-    station_list.add_station(RadioStation(102))
-    station_list.add_station(RadioStation(103.2))
+    station_list = StationList()
+    station_list.add(RadioStation(89))
+    station_list.add(RadioStation(101))
+    station_list.add(RadioStation(102))
+    station_list.add(RadioStation(103.2))
 
     print(f"Stations: {station_list.count()}")
-    station_list.remove_station(89)
+    station_list.remove(89)
     print(f"Stations: {station_list.count()}")
 
     print(f"Current Station: {station_list.current()}")

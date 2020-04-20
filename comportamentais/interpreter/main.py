@@ -1,25 +1,17 @@
-class Subtracao:
-    def __init__(self, expressao_esquerda, expressao_direita):
-        self.__expressao_esquerda = expressao_esquerda
-        self.__expressao_direita = expressao_direita
+class Expressao:
+    def __init__(self, exp_esquerda, exp_direita):
+        self._exp_esquerda = exp_esquerda
+        self._exp_direita = exp_direita
 
+
+class Subtracao(Expressao):
     def avalia(self):
-        return (
-            self.__expressao_esquerda.avalia()
-            - self.__expressao_direita.avalia()
-        )
+        return self._exp_esquerda.avalia() - self._exp_direita.avalia()
 
 
-class Soma:
-    def __init__(self, expressao_esquerda, expressao_direita):
-        self.__expressao_esquerda = expressao_esquerda
-        self.__expressao_direita = expressao_direita
-
+class Soma(Expressao):
     def avalia(self):
-        return (
-            self.__expressao_esquerda.avalia()
-            + self.__expressao_direita.avalia()
-        )
+        return self._exp_esquerda.avalia() + self._exp_direita.avalia()
 
 
 class Numero:
@@ -31,10 +23,12 @@ class Numero:
 
 
 if __name__ == "__main__":
-    expressao_esquerda = Soma(Numero(10), Numero(20))
-    expressao_direita = Soma(Numero(5), Numero(2))
-    expressao_conta = Soma(expressao_esquerda, expressao_direita)
-    print(expressao_conta.avalia())
 
-    expressao_conta2 = Subtracao(Numero(100), Numero(70))
-    print(expressao_conta2.avalia())
+    exp_esquerda = Soma(Numero(10), Numero(20))
+    exp_direita = Soma(Numero(5), Numero(2))
+    exp_conta = Soma(exp_esquerda, exp_direita)
+    print("Expressao: (10 + 20) + (5 + 2) =", exp_conta.avalia())
+
+    exp_esquerda = Soma(Numero(20), Numero(80))
+    exp_conta = Subtracao(exp_esquerda, Numero(70))
+    print("Expressao: (20 + 80) - 70 =", exp_conta.avalia())

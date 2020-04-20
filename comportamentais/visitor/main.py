@@ -1,47 +1,44 @@
+class Impressao:
+    def visita_soma(self, soma):
+        print("(", end=" ")
+        soma.esquerda.aceita(self)
+        print("+", end=" ")
+        soma.direita.aceita(self)
+        print(")", end=" ")
+
+    def visita_subtracao(self, subtracao):
+        print("(", end=" ")
+        subtracao.esquerda.aceita(self)
+        print("-", end=" ")
+        subtracao.direita.aceita(self)
+        print(")", end=" ")
+
+    def visita_numero(self, numero):
+        print(numero.avalia(), end=" ")
+
+
 class Subtracao:
-    def __init__(self, expressao_esquerda, expressao_direita):
-        self.__expressao_esquerda = expressao_esquerda
-        self.__expressao_direita = expressao_direita
+    def __init__(self, esquerda, direita):
+        self.esquerda = esquerda
+        self.direita = direita
 
     def avalia(self):
-        return (
-            self.__expressao_esquerda.avalia()
-            - self.__expressao_direita.avalia()
-        )
+        return self.esquerda.avalia() - self.direita.avalia()
 
     def aceita(self, visitor):
         visitor.visita_subtracao(self)
 
-    @property
-    def expressao_esquerda(self):
-        return self.__expressao_esquerda
-
-    @property
-    def expressao_direita(self):
-        return self.__expressao_direita
-
 
 class Soma:
-    def __init__(self, expressao_esquerda, expressao_direita):
-        self.__expressao_esquerda = expressao_esquerda
-        self.__expressao_direita = expressao_direita
+    def __init__(self, esquerda, direita):
+        self.esquerda = esquerda
+        self.direita = direita
 
     def avalia(self):
-        return (
-            self.__expressao_esquerda.avalia()
-            + self.__expressao_direita.avalia()
-        )
+        return self.esquerda.avalia() + self.direita.avalia()
 
     def aceita(self, visitor):
         visitor.visita_soma(self)
-
-    @property
-    def expressao_esquerda(self):
-        return self.__expressao_esquerda
-
-    @property
-    def expressao_direita(self):
-        return self.__expressao_direita
 
 
 class Numero:
@@ -57,18 +54,16 @@ class Numero:
 
 if __name__ == "__main__":
 
-    from impressao import Impressao
-
-    expressao_esquerda = Soma(Numero(10), Numero(20))
-    expressao_direita = Soma(Numero(5), Numero(2))
-    expressao_conta = Soma(expressao_esquerda, expressao_direita)
+    esquerda = Soma(Numero(10), Numero(20))
+    direita = Soma(Numero(5), Numero(2))
+    expressao_conta = Soma(esquerda, direita)
 
     impressao = Impressao()
     expressao_conta.aceita(impressao)
 
-    print("")
+    print()
 
-    expressao_esquerda = Subtracao(Numero(100), Numero(20))
-    expressao_direita = Soma(Numero(5), Numero(5))
-    expressao_conta = Soma(expressao_esquerda, expressao_direita)
+    esquerda = Subtracao(Numero(100), Numero(20))
+    direita = Soma(Numero(5), Numero(5))
+    expressao_conta = Soma(esquerda, direita)
     expressao_conta.aceita(impressao)

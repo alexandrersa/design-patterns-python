@@ -9,7 +9,6 @@ class ChatRoomMediator(metaclass=ABCMeta):
 
 
 class ChatRoom(ChatRoomMediator):
-    """Mediator"""
 
     def show_message(self, user, message):
         time = datetime.now()
@@ -18,12 +17,12 @@ class ChatRoom(ChatRoomMediator):
 
 
 class User:
-    def __init__(self, name, chat_mediator):
+    def __init__(self, name, mediator):
         self.name = name
-        self.chat_mediator = chat_mediator
+        self.mediator = mediator
 
     def send(self, message):
-        self.chat_mediator.show_message(self, message)
+        self.mediator.show_message(self, message)
 
 
 if __name__ == "__main__":

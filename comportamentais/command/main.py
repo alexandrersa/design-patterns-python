@@ -72,12 +72,11 @@ if __name__ == "__main__":
     pedido1 = Pedido("Joao", 200.0)
     pedido2 = Pedido("Ana", 400.0)
 
-    fila = FilaTrabalho()
-
     comando1 = FinalizaPedido(pedido1)
     comando2 = PagaPedido(pedido1)
     comando3 = FinalizaPedido(pedido2)
 
+    fila = FilaTrabalho()
     fila.adiciona(comando1)
     fila.adiciona(comando2)
     fila.adiciona(comando3)
